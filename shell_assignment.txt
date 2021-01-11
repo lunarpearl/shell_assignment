@@ -71,4 +71,7 @@ gci * -inc *.txt
 => piping them together for some reason did not work
 => select-string .\helloworld.txt -pattern 'world'
 => shows 'name of the file:line_number:text of the full line' for all lines with word 'world' which in here are both of the existing lines
+=> echo 'world hello' > worldhello.txt 
+=> select-string -path .\helloworld.txt, .\worldhello.txt -pattern hello
+=> the output was similar to the previous one with select-string command: name of the file, line, text of the line, but this time it was for both files
 
