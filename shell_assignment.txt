@@ -1,5 +1,5 @@
 1.1 Get-ChildItem
-=> shows location in the computer, items in the folder with their last edit date & time, legth of the file and the name
+=> shows location in the computer, items in the folder with their mode,last edit date & time, legth of the file and the name
     Get-Alias ls
 => shows the type, name and the definition of the command 'ls'
 1.2 Get-Help Remove-Item
@@ -8,3 +8,62 @@
 => shows everything as before + parameters and examples
     Get-Help Get-ChildItem -detailed
 => to display files only with a certain extensions we have options of: -exclude,-include
+    playing around
+gci * -inc *.txt
+2.1 Get-Location
+=> Path: C:\Users\user\Documents\2020-2021 UCU\Data Analysis\week II
+    gci
+=> I don't see text in different colours; but folders differ from files in 'mode'(d---- and -a---, respectively), in 'length' not giving any number for the foulder, and in the files having extension of '.txt' while folders have nothing
+2.2 Get-Location vs sl ..
+=> first one showed a full path, second one just set a new location in one folder higher in hierarchy
+    moving back
+=> used: sl -path "~\Documents\2020-2021 UCU\Data Analysis\week II"
+    shell_magic setting up
+=> sl -path "~\Documents\2020-2021 UCU\Data Analysis\week II/shell_magic"
+3.1 New-Item
+=> ni -name "hello world" -type "file"
+=> shows up a path to current directory; and info about the created file like a 'gci' command
+=> I checked beforehand what can get-help tell me about this command, but i suspect that in naming files either we need to avoid spaces or not forget using quotation marks
+3.2 directories
+=> ni -name "hello_world" -ItemType directory
+3.3 creating hello_world
+=> did not work; access denied, probably bc then it has the same path as the directory with the same name
+=> ni -name hello_world.bfe -type file
+=> ren -Path .\hello_world.bfe -NewName hello_world.txt
+=> move -Path .\hello_world.txt -Destination .\hello_world
+=> move -Path 'C:\Users\user\Documents\2020-2021 UCU\Data Analysis\week II\shell_magic\hello_world\hello_world.txt' -Destination 'C:\Users\user\Documents\2020-2021 UCU\Data Analysis\week II\shell_magic'
+=> sl .\hello_world
+=> move -Path ..\hello_world.txt -Destination .
+=> move -Path .\hello_world.txt -Destination ..
+3.4 copying files
+=> moving a file makes this file show up at a new specified location and cease from the previous, while copying a file can lead to a virtually the same file to be stored in multiple various location
+=> copy -Path ..\hello_world.txt -Destination .
+=> copy -Path ..\hello_world.txt -Destination .\world_hello.txt
+3.5 Removing files and directories
+=> sl ..
+=> rm -Path .\hello_world.txt
+=> rm -Path .\hello_world\hello_world.txt
+=> when i run "rm -Path .\hello_world" shell warns me that there are more files inside this folder and gives options to delete them one by one, all together, not to continue and delete not all of them(+ stop, and open info)
+=> rm -Path .\hello_world -Recurse
+4.1 Displaying file contents
+=> ni -name hello_world.txt -type file
+=> cat -Path .\hello_world.txt
+=> does not display anything as it is supposed to print out what is in the file and since this file is empty it prints nothing
+4.2 redirecting standard output
+=> echo 'file contents' > file.txt
+=> created a plain-text file which has 'file contents' written in it
+=> echo 'more contents' >> file.txt
+=> both entries are in the file as two lines of text
+4.3 Prevent cluttering your terminal
+=> dir -Path ~ -Recurse >> .\home_contents.list
+=> gc home_contents.list | oh -p 
+=> i tried earlier to just list everything from ~ as output in shell and it was veeeeery long and took a while, so I guess this is a good way to manage how much you will see in the big file and to navigate a bit easier than in the overfull console
+5.1 The Pipe Symbol
+=> Measure-Object counts numeral properties of objects,e.g. the amount of symbols, words, and lines in files
+   also helps to find minimums, maximums, means and sums of the countable properties of the object
+=> without knowing what object to measure this command does not work
+=> gc .\file.txt | measure -word
+=> dir . | measure  
+=> gave a count of 4, which is amount of objects in this directory
+5.2 Finding Patterns
+
