@@ -66,4 +66,9 @@ gci * -inc *.txt
 => dir . | measure  
 => gave a count of 4, which is amount of objects in this directory
 5.2 Finding Patterns
+=> echo 'hello world' > helloworld.txt
+=> echo 'world hello' >> helloworld.txt
+=> piping them together for some reason did not work
+=> select-string .\helloworld.txt -pattern 'world'
+=> shows 'name of the file:line_number:text of the full line' for all lines with word 'world' which in here are both of the existing lines
 
