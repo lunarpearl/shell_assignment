@@ -1,0 +1,10 @@
+1.1 Get-ChildItem
+=> shows location in the computer, items in the folder with their last edit date & time, legth of the file and the name
+    Get-Alias ls
+=> shows the type, name and the definition of the command 'ls'
+1.2 Get-Help Remove-Item
+=> shows the name, description of the command, its syntax, another longer description(?), links about the topic, notes on finding out more
+    Get-Help Remove-Item -detailed
+=> shows everything as before + parameters and examples
+    Get-Help Get-ChildItem -detailed
+=> to display files only with a certain extensions we have options of: -exclude,-include
